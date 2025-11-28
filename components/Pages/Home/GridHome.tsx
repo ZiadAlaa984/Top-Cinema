@@ -1,9 +1,10 @@
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
 import Card from "@/Shared/card";
 import SideCard from "@/Shared/sideCard";
 import SpecialTitle from "@/Shared/SpecialTitle";
+import { movieType } from "@/types/movie";
 import { tvType } from "@/types/tv";
-import { Separator } from "@radix-ui/react-separator";
 
 function GridHome({
   pageGridSmall,
@@ -25,7 +26,6 @@ function GridHome({
   return (
     <div className="grid Content-Wrapper gap-4  grid-cols-3">
       <div className={`col-span-2 order-${order} card-used `}>
-        {" "}
         <SpecialTitle page={pageGridBig} title={titleGridBig} />
         <Separator className="my-4" />
         <ScrollArea className="rounded-md border">
