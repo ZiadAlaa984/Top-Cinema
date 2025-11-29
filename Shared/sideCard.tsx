@@ -3,9 +3,15 @@ import { tvType } from "@/types/tv";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function SideCard({ card }: { card: tvType }) {
+export default function SideCard({
+  card,
+  type,
+}: {
+  card: tvType;
+  type: string;
+}) {
   return (
-    <Link href={"./"}>
+    <Link href={`./${type}/${card.id}`}>
       <div className="flex items-center  gap-1">
         <div className="Poster">
           <Image

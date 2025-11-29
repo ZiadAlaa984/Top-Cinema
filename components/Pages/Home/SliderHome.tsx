@@ -22,7 +22,12 @@ export default function SliderHome({ data }: { data: tvType[] }) {
             key={index}
             className="basis-1/2 pl-2 md:basis-1/3  lg:basis-1/5 "
           >
-            <Card className=" md:min-h-[350px]" card={card} key={card.id} />
+            <Card
+              type="tv"
+              className=" md:min-h-[350px]"
+              card={card}
+              key={card.id}
+            />
           </CarouselItem>
         ))}
       </CarouselContent>

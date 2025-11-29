@@ -12,8 +12,10 @@ export default function Box({
   title,
   data,
   page,
+  type = "movie",
   className,
 }: {
+  type?: string;
   className?: string;
   title: string;
   data: tvType[];
@@ -26,7 +28,7 @@ export default function Box({
       <ScrollArea className="rounded-md border">
         <div className="grid grid-flow-col auto-cols-[200px] gap-2 p-2">
           {data.map((card) => (
-            <Card card={card} key={card.id} />
+            <Card type={type} card={card} key={card.id} />
           ))}
         </div>
         <ScrollBar orientation="horizontal" />

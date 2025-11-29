@@ -10,13 +10,15 @@ import Link from "next/link";
 export default function Card({
   card,
   className,
+  type,
 }: {
+  type: string;
   card: tvType;
   className?: string;
 }) {
   const genreNames = useGenreNames("tv", card.genre_ids);
   return (
-    <Link href={`./${card.media_type}/${card.id}`}>
+    <Link href={`/${type}/${card.id}`}>
       <div
         className={cn(
           "col-span-1 relative min-h-[300px] overflow-hidden hover:bg-black/60 transform transition-all  rounded-md",

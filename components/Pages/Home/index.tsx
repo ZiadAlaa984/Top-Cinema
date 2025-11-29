@@ -34,6 +34,7 @@ export default async function MainContent() {
 
       {/* Example using new movie data */}
       <GridHome
+        
         dataSmall={nowPlaying?.results}
         dataBig={popular?.results}
         titleGridSmall="Now Playing"
