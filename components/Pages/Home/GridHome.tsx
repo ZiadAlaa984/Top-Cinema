@@ -25,7 +25,7 @@ function GridHome({
 }) {
   return (
     <div className="grid Content-Wrapper gap-4  grid-cols-3">
-      <div className={`col-span-2 order-${order} card-used `}>
+      <div className={`col-span-3 md:col-span-2  order-${order} card-used `}>
         <SpecialTitle page={pageGridBig} title={titleGridBig} />
         <Separator className="my-4" />
         <ScrollArea className="rounded-md border">
@@ -37,7 +37,7 @@ function GridHome({
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
       </div>
-      <div className="col-span-1  card-used">
+      <div className="col-span-3 md:col-span-1  card-used">
         {" "}
         <SpecialTitle page={pageGridSmall} title={titleGridSmall} />
         <Separator className="my-4" />

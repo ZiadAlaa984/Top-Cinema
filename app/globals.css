@@ -210,7 +210,7 @@
     transition: 0.3s;
   }
   .card-used {
-    @apply border rounded-xl  backdrop-blur-md p-4;
+    @apply border rounded-xl  backdrop-blur-md p-2 md:p-4;
   }
   .Poster {
     min-width: 100px;
@@ -218,6 +218,5 @@
     overflow: hidden;
     max-width: 110px;
     border-radius: 8px;
-    margin-left: 13px;
   }
 }

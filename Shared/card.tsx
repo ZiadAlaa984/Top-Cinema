@@ -19,7 +19,7 @@ export default function Card({
     <Link href={`./${card.media_type}/${card.id}`}>
       <div
         className={cn(
-          "col-span-1 relative min-h-[300px] hover:bg-black/60 transform transition-all  rounded-md",
+          "col-span-1 relative min-h-[300px] overflow-hidden hover:bg-black/60 transform transition-all  rounded-md",
           className
         )}
       >
@@ -46,7 +46,9 @@ export default function Card({
             <Star absoluteStrokeWidth className="text-yellow-400 size-4" />
           </span>
         </div>
-        <h3 className=" title line-clamp-2">{card.name || card.title}</h3>
+        <h3 className=" title line-clamp-1 rounded-b-xl">
+          {card?.name || card?.title}
+        </h3>
       </div>
     </Link>
   );

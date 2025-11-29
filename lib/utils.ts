@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { headers } from "@/constant";
+import { movieType } from "@/types/movie";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -31,3 +32,15 @@ export const query = async (endpoint: string, params?: Record<string, any>) => {
 
 export const ImageSrs = (src: string) =>
   process.env.NEXT_PUBLIC_IMAGE_SIZE_W500 + src;
+// get  image for Wrapper url
+
+export const ImageForWrapper = (data: movieType[]) => {
+  while (true) {
+    if (data.length === 0) return "";
+    const randomIndex = Math.floor(Math.random() * data.length);
+    const randomMovie = data[randomIndex];
+    if (randomMovie.backdrop_path) {
+      return `${process.env.NEXT_PUBLIC_IMAGE_SIZE_NORMAL}${randomMovie.backdrop_path}`;
+    }
+  }
+};

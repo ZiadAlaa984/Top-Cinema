@@ -1,7 +1,9 @@
 import GridHome from "@/components/Pages/Home/GridHome";
 import SliderHome from "@/components/Pages/Home/SliderHome";
+import { ImageForWrapper } from "@/lib/utils";
 import Service from "@/service/All";
 import Box from "@/Shared/Box";
+import Wrapper from "@/Shared/Wrapper";
 import { ResponseApiTv } from "@/types/tv";
 
 export default async function MainContent() {
@@ -17,10 +19,18 @@ export default async function MainContent() {
 
   const [nowPlaying, popular, topRated, upcoming] = movieResponses;
 
+  // 2) Pick random kind + random image from fetched data
+  const randomKindIndex = Math.floor(Math.random() * movieResponses.length);
+  const selectedMovies = movieResponses[randomKindIndex]?.results ?? [];
+
+  const randomImage = ImageForWrapper(selectedMovies);
+
   return (
-    <main className="flex flex-col gap-6">
+    <Wrapper image={randomImage}>
       {/* Slider */}
-      <SliderHome data={trendingTv?.results} />
+      <div className="Content-Wrapper">
+        <SliderHome data={trendingTv?.results} />
+      </div>
 
       {/* Example using new movie data */}
       <GridHome
@@ -52,6 +62,6 @@ export default async function MainContent() {
       <Box data={topRated?.results} title="Netflix Series" page="./netflix" />
 
       <Box data={trendingTv?.results} title="Best TV Series This Month" />
-    </main>
+    </Wrapper>
   );
 }
