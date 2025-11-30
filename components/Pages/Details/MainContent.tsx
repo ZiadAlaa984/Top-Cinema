@@ -4,6 +4,7 @@ import Wrapper from "@/Shared/Wrapper";
 import Recommendations from "./Recommendations";
 import { logos, translation, video } from "@/types/movie";
 import Details from "./Details";
+import TabsDetails from "./TabsDetails";
 
 async function MainContent({ type, id }: { type: string; id: string }) {
   // Fetch all data in parallel
@@ -56,9 +57,12 @@ async function MainContent({ type, id }: { type: string; id: string }) {
         type={type}
         id={id}
       />
-      {recommendations.total_results > 0 && (
-        <Recommendations  data={recommendations} type={type} id={id} />
-      )}
+      <TabsDetails
+        seosons={type == "tv" ? details?.seasons : null}
+        Crews={crew}
+        recommendations={recommendations}
+        type={type}
+      />
     </Wrapper>
   );
 }

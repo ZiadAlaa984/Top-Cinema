@@ -14,6 +14,8 @@ const Service = {
   getTrending: (type: string, time_window = "week", page = 1) =>
     query(buildUrl("trending", type, time_window), { page }),
 
+  getSeosons: (id: string) => query(buildUrl("tv", id, "seasons")),
+
   searchData: (type: string, value: string) =>
     query(buildUrl("search", type), {
       query: value,
