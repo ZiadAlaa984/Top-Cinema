@@ -11,7 +11,9 @@ function Details({
   providers,
   logo,
   video,
+  seasonName,
 }: {
+  seasonName?: string;
   name: string;
   logo: logos | undefined;
   video: video | undefined;
@@ -24,6 +26,7 @@ function Details({
   return (
     <div className="Content-Wrapper  grid grid-cols-1 lg:grid-cols-4 gap-4">
       <Info
+        seasonName={seasonName}
         name={name}
         logo={logo?.file_path}
         providers={providers || undefined}

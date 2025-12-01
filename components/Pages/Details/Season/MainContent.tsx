@@ -2,29 +2,28 @@ import { ImageForWrapper } from "@/lib/utils";
 import Service from "@/service/All";
 import Wrapper from "@/Shared/Wrapper";
 import { logos, translation, video } from "@/types/movie";
-import Details from "./Details";
-import TabsDetails from "./TabsDetails";
+import TabsDetails from "../TabsDetails";
+import Details from "../Details";
 
-async function MainContent({ type, id }: { type: string; id: string }) {
+async function MainContent({
+  number,
+  id,
+  type,
+}: {
+  number: string;
+  id: string;
+  type: string;
+}) {
   // Fetch all data in parallel
-  let name = "";
-  const [
-    details,
-    crew,
-    recommendations,
-    translations,
-    providers,
-    logos,
-    videos,
-  ] = await Promise.all([
-    Service.getDetails(type, id),
-    Service.getCrew(type, id),
-    Service.getRecommendations(type, id),
-    Service.translate(type, id),
-    Service.providers(type, id),
-    Service.logos(type, id),
-    Service.videos(type, id),
-  ]);
+  const [details, recommendations, translations, providers, logos, videos] =
+    await Promise.all([
+      Service.getDetailsSeason(number, id),
+      Service.getRecommendations(type, id),
+      Service.translate(type, id),
+      Service.providers(type, id),
+      Service.logos(type, id),
+      Service.videos(type, id),
+    ]);
 
   const arabicTranslation = translations.translations.find(
     (t: translation) => t.iso_639_1 === "ar"
@@ -36,18 +35,11 @@ async function MainContent({ type, id }: { type: string; id: string }) {
 
   const selectedVideo = videos?.results.find((video: video) => video.key);
 
-  const imageWrapper = ImageForWrapper([details]);
-
-  if (type == "tv") {
-    name = details.name;
-  } else {
-    name = details.title;
-  }
-
   return (
-    <Wrapper image={imageWrapper}>
+    <Wrapper>
       <Details
-        name={name}
+        seasonName={details.name}
+        name={details.name}
         logo={selectedLogo}
         video={selectedVideo}
         providers={providerList}
@@ -56,13 +48,14 @@ async function MainContent({ type, id }: { type: string; id: string }) {
         type={type}
         id={id}
       />
-      <TabsDetails
+
+      {/* <TabsDetails
         id={id}
         seasons={type == "tv" ? details?.seasons : null}
-        Crews={crew}
+        Crews={details.crew}
         recommendations={recommendations}
         type={type}
-      />
+      /> */}
     </Wrapper>
   );
 }

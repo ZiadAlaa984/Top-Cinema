@@ -2,27 +2,29 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Recommendations from "./Recommendations";
 import { castResponse } from "@/types/crew";
 import CrewsBox from "./CrewsBox";
-import { ResponseApiTv, seoson } from "@/types/tv";
-import SeosonsBox from "./SeosonsBox";
+import { ResponseApiTv, seasons } from "@/types/tv";
+import SeasonsBox from "./SeasonsBox";
 
 export const title = "Basic Tabs";
 
 const TabsDetails = ({
   recommendations,
+  id,
   type,
   Crews,
-  seosons,
+  seasons,
 }: {
+  id: string;
   recommendations: ResponseApiTv;
   type: string;
   Crews: castResponse;
-  seosons: seoson[] | undefined;
+  seasons: seasons[] | undefined;
 }) => {
   // Determine which tab should be selected first
   const defaultTab =
     recommendations?.results?.length > 0
       ? "recommendations"
-      : type === "tv" && seosons
+      : type === "tv" && seasons
       ? "seosons"
       : Crews
       ? "crews"
@@ -34,8 +36,8 @@ const TabsDetails = ({
         {recommendations?.results?.length > 0 && (
           <TabsTrigger value="recommendations">Recommendations</TabsTrigger>
         )}
-        {type === "tv" && seosons && (
-          <TabsTrigger value="seosons">Seosons</TabsTrigger>
+        {type === "tv" && seasons && (
+          <TabsTrigger value="seasons">Seosons</TabsTrigger>
         )}
         {Crews && <TabsTrigger value="crews">Crews</TabsTrigger>}
       </TabsList>
@@ -48,8 +50,8 @@ const TabsDetails = ({
         <CrewsBox data={Crews} type={type} />
       </TabsContent>
 
-      <TabsContent value="seosons">
-        <SeosonsBox data={seosons} />
+      <TabsContent value="seasons">
+        <SeasonsBox id={id} data={seasons} />
       </TabsContent>
     </Tabs>
   );

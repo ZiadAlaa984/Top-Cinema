@@ -34,7 +34,8 @@ const Service = {
    *  DETAILS & MOVIE INFO
    * ------------------------------------ */
   getDetails: (type: string, id: string) => query(buildUrl(type, id)),
-
+  getDetailsSeason: (number: string, id: string) =>
+    query(buildUrl("tv", id, "season", number)),
   getCrew: (type: string, id: string) => query(buildUrl(type, id, "credits")),
 
   getRecommendations: (type: string, id: string, page = 1) =>

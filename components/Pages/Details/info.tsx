@@ -15,7 +15,9 @@ export default function Info({
   logo,
   type,
   name,
+  seasonName,
 }: {
+  seasonName?: string;
   name: string;
   type: string;
   logo?: string;
@@ -33,7 +35,11 @@ export default function Info({
 
   return (
     <div className="col-span-2 flex flex-col gap-4">
-      <Breadcrumbs type={type} title={name.split(" ").splice(0, 3).join(" ")} />
+      <Breadcrumbs
+        seasonName={seasonName}
+        type={type}
+        title={name.split(" ").splice(0, 3).join(" ")}
+      />
 
       {/* Poster Logo */}
       {logo && (

@@ -8,7 +8,15 @@ import {
 } from "@/components/ui/breadcrumb";
 import { ChevronsRight } from "lucide-react";
 
-const Breadcrumbs = ({ type, title }: { type: string; title: string }) => {
+const Breadcrumbs = ({
+  type,
+  title,
+  seasonName,
+}: {
+  type: string;
+  seasonName?: string;
+  title: string;
+}) => {
   return (
     <Breadcrumb>
       <BreadcrumbList>
@@ -27,6 +35,16 @@ const Breadcrumbs = ({ type, title }: { type: string; title: string }) => {
         <BreadcrumbItem>
           <BreadcrumbPage>{title}</BreadcrumbPage>
         </BreadcrumbItem>
+        {seasonName && (
+          <>
+            <BreadcrumbSeparator>
+              <ChevronsRight />
+            </BreadcrumbSeparator>
+            <BreadcrumbItem>
+              <BreadcrumbPage>{seasonName}</BreadcrumbPage>
+            </BreadcrumbItem>
+          </>
+        )}
       </BreadcrumbList>
     </Breadcrumb>
   );
