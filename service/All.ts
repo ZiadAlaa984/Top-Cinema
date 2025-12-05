@@ -51,6 +51,16 @@ const Service = {
   getCelebrities: (page = 1) =>
     query(buildUrl("person/popular?language=en-US"), { page }),
 
+  // get details celebrities
+
+  getDetailsCelebrities: (id: string) =>
+    query(buildUrl(`person/${id}?language=en-US`)),
+
+  // combined_credits
+
+  getCombinedCredits: (id: string) =>
+    query(buildUrl(`person/${id}/combined_credits?language=en-US`)),
+
   /** ------------------------------------
    *  MEDIA / EXTRAS
    * ------------------------------------ */

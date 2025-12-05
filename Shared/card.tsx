@@ -16,9 +16,9 @@ export default function Card({
   card: tvType;
   className?: string;
 }) {
-  const genreNames = useGenreNames("tv", card.genre_ids);
+  const genreNames = useGenreNames(card?.media_type || "tv", card.genre_ids);
   return (
-    <Link href={`/${type}/${card.id}`}>
+    <Link href={`/${card?.media_type || type}/${card.id}`}>
       <div
         className={cn(
           "col-span-1 relative min-h-[300px] overflow-hidden hover:bg-black/60 transform transition-all  rounded-md",
@@ -43,10 +43,12 @@ export default function Card({
               </li>
             ))}
           </ul>
-          <span className="flex items-center gap-1 text-xs tag">
-            {card.vote_average.toFixed(1)}{" "}
-            <Star absoluteStrokeWidth className="text-yellow-400 size-4" />
-          </span>
+          {card.vote_average != 0 && (
+            <span className="flex items-center gap-1 text-xs tag">
+              {card.vote_average.toFixed(1)}{" "}
+              <Star absoluteStrokeWidth className="text-yellow-400 size-4" />
+            </span>
+          )}
         </div>
         <h3 className=" title line-clamp-1 rounded-b-xl">
           {card?.name || card?.title}

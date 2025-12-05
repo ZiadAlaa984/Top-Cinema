@@ -55,7 +55,7 @@ export default function MainContent() {
   }, [fetchNextPage, hasNextPage]);
 
   return (
-    <Wrapper className="flex flex-col component-wrapper gap-4">
+    <Wrapper className="flex flex-col  gap-4">
       <div className={cn("Content-Wrapper card-used")}>
         <SpecialTitle title={"celebrities"} />
         <Separator className="my-4" />

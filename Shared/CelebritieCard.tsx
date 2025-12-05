@@ -12,7 +12,7 @@ export default function CelebritieCard({
   className?: string;
 }) {
   return (
-    <Link href={`/celebritie/${card.id}`}>
+    <Link href={`/celebrities/${card.id}`}>
       <div
         className={cn(
           "col-span-1 relative min-h-[300px] overflow-hidden hover:bg-black/60 transform transition-all  rounded-md",

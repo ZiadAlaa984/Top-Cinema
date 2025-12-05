@@ -2,7 +2,7 @@
 
 import { useGenres } from "@/context/genresContext";
 
-export function useGenreNames(type: "tv" | "movie", genreIds: number[]) {
+export function useGenreNames(type: string, genreIds: number[]) {
   const { tvGenres, movieGenres } = useGenres();
 
   if (!genreIds) return [];

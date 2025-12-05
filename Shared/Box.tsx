@@ -27,9 +27,10 @@ export default function Box({
       <Separator className="my-4" />
       <ScrollArea className="rounded-md border">
         <div className="grid grid-flow-col auto-cols-[200px] gap-2 p-2">
-          {data.map((card) => (
-            <Card type={type} card={card} key={card.id} />
-          ))}
+          {data.map(
+            (card) =>
+              card.poster_path && <Card type={type} card={card} key={card.id} />
+          )}
         </div>
         <ScrollBar orientation="horizontal" />
       </ScrollArea>

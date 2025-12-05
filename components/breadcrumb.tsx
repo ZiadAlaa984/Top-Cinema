@@ -17,6 +17,12 @@ const Breadcrumbs = ({
   seasonName?: string;
   title: string;
 }) => {
+  let link;
+  if (type == "movie") {
+    link = `movies/category/popular`;
+  } else if (type == "tv") {
+    link = `${type}/category/popular`;
+  }
   return (
     <Breadcrumb>
       <BreadcrumbList>
@@ -27,7 +33,9 @@ const Breadcrumbs = ({
           <ChevronsRight />
         </BreadcrumbSeparator>
         <BreadcrumbItem>
-          <BreadcrumbLink>{type}</BreadcrumbLink>
+          <BreadcrumbLink href={`/${link?.toLowerCase()}`}>
+            {type}
+          </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator>
           <ChevronsRight />

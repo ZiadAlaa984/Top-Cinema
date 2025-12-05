@@ -2,6 +2,8 @@
 // Added `Popular` interface as requested.
 // Generated from the example you provided.
 
+import { tvType } from "./tv";
+
 export interface celebritieResponse {
   page: number;
   results: celebritieType[];
@@ -31,4 +33,16 @@ export interface KnownFor {
   poster_path?: string | null;
   vote_average: number;
   vote_count?: number;
+}
+
+export interface celebritieDetails {
+  profile_path: string;
+  biography: string;
+  name: string;
+  birthday: string;
+  also_known_as: string[];
+  known_for_department: string;
+}
+export interface CombinedCreditsInterface {
+  cast: tvType[];
 }

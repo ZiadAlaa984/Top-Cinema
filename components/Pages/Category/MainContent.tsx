@@ -68,7 +68,7 @@ export default function MainContent({
   return (
     <Wrapper
       image={imageWrapper}
-      className="flex flex-col component-wrapper gap-4"
+      className="flex flex-col  gap-4"
     >
       <div className={cn("Content-Wrapper card-used")}>
         <SpecialTitle title={category} />
