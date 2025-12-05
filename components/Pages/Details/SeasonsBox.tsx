@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 function SeasonsBox({ data, id }: { data: seasons[] | undefined; id: string }) {
-  console.log("🚀 ~ SeasonsBox ~ data:", data);
+  // console.log("🚀 ~ SeasonsBox ~ data:", data);
   return (
     <div className={cn("Content-Wrapper card-used ")}>
       <SpecialTitle title={"seasons"} />

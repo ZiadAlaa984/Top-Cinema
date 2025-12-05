@@ -47,6 +47,10 @@ const Service = {
   providers: (type: string, id: string) =>
     query(buildUrl(type, id, "watch", "providers")),
 
+  // celebrities
+  getCelebrities: (page = 1) =>
+    query(buildUrl("person/popular?language=en-US"), { page }),
+
   /** ------------------------------------
    *  MEDIA / EXTRAS
    * ------------------------------------ */

@@ -59,14 +59,14 @@ export const items = [
   },
 
   {
-    label: "People",
+    label: "celebrities",
     bgColor: "#271E37",
     textColor: "#fff",
     links: [
       {
-        label: "Popular People",
+        label: "Popular celebrities",
         ariaLabel: "Popular People in Entertainment",
-        href: "/person",
+        href: "/celebrities",
       },
     ],
   },

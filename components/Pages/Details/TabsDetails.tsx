@@ -25,7 +25,7 @@ const TabsDetails = ({
     recommendations?.results?.length > 0
       ? "recommendations"
       : type === "tv" && seasons
-      ? "seosons"
+      ? "seasons"
       : Crews
       ? "crews"
       : "recommendations"; // fallback

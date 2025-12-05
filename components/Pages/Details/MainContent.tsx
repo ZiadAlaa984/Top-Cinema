@@ -43,7 +43,6 @@ async function MainContent({ type, id }: { type: string; id: string }) {
   } else {
     name = details.title;
   }
-
   return (
     <Wrapper image={imageWrapper}>
       <Details

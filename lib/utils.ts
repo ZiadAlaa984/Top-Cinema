@@ -20,7 +20,7 @@ export const query = async (endpoint: string, params?: Record<string, any>) => {
     });
   }
 
-  const res = await fetch(url.toString(), { headers });
+  const res = await fetch(url.toString(), { headers, cache: "force-cache" });
 
   if (!res.ok) {
     const errorBody = await res.text().catch(() => "");
