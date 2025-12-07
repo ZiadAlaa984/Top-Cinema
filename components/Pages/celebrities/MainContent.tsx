@@ -1,7 +1,7 @@
 "use client";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import Service from "@/service/All";
@@ -11,48 +11,30 @@ import Wrapper from "@/Shared/Wrapper";
 import { Loader2 } from "lucide-react";
 import { celebritieResponse } from "@/types/celebritie";
 import CelebritieCard from "@/Shared/CelebritieCard";
+import { useInView } from "react-intersection-observer";
 
 export default function MainContent() {
-  const loadMoreRef = useRef<HTMLDivElement | null>(null);
+  const { ref, inView } = useInView();
 
-  // Fetch + Infinite Scroll
-  const {
-    data,
-    isLoading,
-    isError,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-  } = useInfiniteQuery({
-    queryKey: ["celebrities"],
-    queryFn: ({ pageParam }: { pageParam: number }) =>
-      Service.getCelebrities(pageParam),
-    initialPageParam: 1,
-    getNextPageParam: (lastPage: any) => {
-      if (lastPage.page < lastPage.total_pages) {
-        return lastPage.page + 1;
-      }
-      return undefined; // no more pages
-    },
-    staleTime: 1000 * 60 * 5,
-  });
-
-  // Intersection Observer to load next page when scrolling
-  useEffect(() => {
-    if (!loadMoreRef.current) return;
-
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && hasNextPage) {
-        fetchNextPage();
-      }
+  const { data, isLoading, isError, fetchNextPage, isFetchingNextPage } =
+    useInfiniteQuery({
+      queryKey: ["celebrities"],
+      queryFn: ({ pageParam }: { pageParam: number }) =>
+        Service.getCelebrities(pageParam),
+      initialPageParam: 1,
+      getNextPageParam: (lastPage: any) => {
+        if (lastPage.page < lastPage.total_pages) {
+          return lastPage.page + 1;
+        }
+        return undefined; // no more pages
+      },
+      staleTime: 1000 * 60 * 5,
     });
-
-    observer.observe(loadMoreRef.current);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [fetchNextPage, hasNextPage]);
+  useEffect(() => {
+    if (inView) {
+      fetchNextPage();
+    }
+  }, [inView]);
 
   return (
     <Wrapper className="flex flex-col  gap-4">
@@ -80,7 +62,7 @@ export default function MainContent() {
         </RequestStatus>
 
         {/* 2) Loader for next page */}
-        <div ref={loadMoreRef} className="w-full flex justify-center py-6">
+        <div ref={ref} className="w-full flex justify-center py-6">
           {isFetchingNextPage && (
             <Loader2 className="animate-spin h-8 w-8 text-white" />
           )}

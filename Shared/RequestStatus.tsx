@@ -1,28 +1,58 @@
-import Loading from "@/app/loading";
+"use client";
 import React from "react";
 
-interface RequestStatusProps {
-  isPending?: boolean;
-  isError?: boolean;
-  children: React.ReactNode;
-  isloading: boolean;
-}
+import Loading from "@/app/loading";
+import { cn } from "@/lib/utils";
+import ErrorMessage from "./ErrorMessage";
+import NoDataCom from "./NoDataCom";
 
-export default function RequestStatus({
-  isPending,
+const RequestStatus = ({
+  isLoading,
   isError,
+  isPending,
+  error,
+  data,
   children,
-  isloading,
-}: RequestStatusProps) {
-  if (isloading || isPending) {
-    return <Loading />;
-  }
-
-  if (isError) {
+}: {
+  isLoading: boolean;
+  isError: boolean;
+  error: Error;
+  data: unknown[];
+  children: React.ReactNode;
+  isPending: boolean;
+}) => {
+  if (isLoading)
     return (
-      <div className="text-red-500">An error occurred. Please try again.</div>
+      <div className="h-[200px] w-full flex items-center justify-center">
+        <Loading />
+      </div>
     );
-  }
 
-  return <>{children}</>;
-}
+  if (isError)
+    return (
+      <div>
+        <ErrorMessage>{error?.message}</ErrorMessage>
+      </div>
+    );
+
+  if (Array.isArray(data) && data.length === 0)
+    return (
+      <div>
+        <NoDataCom />
+      </div>
+    );
+
+  if (!Array.isArray(data)) return null;
+
+  return (
+    <div
+      className={cn({
+        "opacity-50": isPending,
+      })}
+    >
+      {children}
+    </div>
+  );
+};
+
+export default RequestStatus;

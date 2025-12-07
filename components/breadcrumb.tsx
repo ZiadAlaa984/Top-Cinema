@@ -19,7 +19,8 @@ const Breadcrumbs = ({
 }) => {
   let link;
   if (type == "movie") {
-    link = `movies/category/popular`;
+    type = "movies";
+    link = `movie/category/popular`;
   } else if (type == "tv") {
     link = `${type}/category/popular`;
   }

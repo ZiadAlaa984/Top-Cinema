@@ -11,6 +11,7 @@ import SpecialTitle from "@/Shared/SpecialTitle";
 import Wrapper from "@/Shared/Wrapper";
 import { tvType } from "@/types/tv";
 import { Loader2 } from "lucide-react";
+import { useInView } from "react-intersection-observer";
 
 export default function MainContent({
   type,
@@ -19,7 +20,7 @@ export default function MainContent({
   type: string;
   category: string;
 }) {
-  const loadMoreRef = useRef<HTMLDivElement | null>(null);
+  const { ref, inView } = useInView();
 
   // Fetch + Infinite Scroll
   const {
@@ -42,23 +43,11 @@ export default function MainContent({
     },
     staleTime: 1000 * 60 * 5,
   });
-
-  // Intersection Observer to load next page when scrolling
   useEffect(() => {
-    if (!loadMoreRef.current) return;
-
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && hasNextPage) {
-        fetchNextPage();
-      }
-    });
-
-    observer.observe(loadMoreRef.current);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [fetchNextPage, hasNextPage]);
+    if (inView) {
+      fetchNextPage();
+    }
+  }, [inView]);
 
   // Extract all results from pages
   const allResults = data?.pages.flatMap((p) => p.results) || [];
@@ -66,10 +55,7 @@ export default function MainContent({
   const imageWrapper = ImageForWrapper(allResults);
 
   return (
-    <Wrapper
-      image={imageWrapper}
-      className="flex flex-col  gap-4"
-    >
+    <Wrapper className="flex flex-col  gap-4">
       <div className={cn("Content-Wrapper card-used")}>
         <SpecialTitle title={category} />
         <Separator className="my-4" />
@@ -77,14 +63,18 @@ export default function MainContent({
         {/* 1) Main content */}
         <RequestStatus isloading={isLoading} isError={isError}>
           <div className="grid md:grid-cols-3 lg:grid-cols-6 grid-cols-2 gap-2 ">
-            {allResults.map((card: tvType, index: number) => (
-              <Card type={type} card={card} key={index} />
-            ))}
+            {allResults.map((card: tvType, index: number) => {
+              return (
+                card?.poster_path && (
+                  <Card type={type} card={card} key={index} />
+                )
+              );
+            })}
           </div>
         </RequestStatus>
 
         {/* 2) Loader for next page */}
-        <div ref={loadMoreRef} className="w-full flex justify-center py-6">
+        <div ref={ref} className="w-full flex justify-center py-6">
           {isFetchingNextPage && (
             <Loader2 className="animate-spin h-8 w-8 text-white" />
           )}

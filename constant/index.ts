@@ -10,22 +10,22 @@ export const items = [
       {
         label: "Popular Movies",
         ariaLabel: "Popular Movies",
-        href: "/movies/category/popular",
+        href: "/movie/category/popular",
       },
       {
         label: "Top Rated",
         ariaLabel: "Top Rated Movies",
-        href: "/movies/category/top_rated",
+        href: "/movie/category/top_rated",
       },
       {
         label: "Upcoming",
         ariaLabel: "Upcoming Movies",
-        href: "/movies/category/upcoming",
+        href: "/movie/category/upcoming",
       },
       {
         label: "Now Playing",
         ariaLabel: "Now Playing Movies",
-        href: "/movies/category/now_playing",
+        href: "/movie/category/now_playing",
       },
     ],
   },

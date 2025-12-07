@@ -30,6 +30,12 @@ const Service = {
       ...(with_genres && { with_genres }),
     }),
 
+  // get data by serach
+  getDataBySearch: (type: string, search: string) =>
+    query(buildUrl("search", type), {
+      query: search,
+    }),
+
   /** ------------------------------------
    *  DETAILS & MOVIE INFO
    * ------------------------------------ */

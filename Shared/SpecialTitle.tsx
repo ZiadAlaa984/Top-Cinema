@@ -7,7 +7,7 @@ function SpecialTitle({ page, title }: { page?: string; title: string }) {
     <div className="flex justify-between  items-center ">
       <h2>
         <BlurText
-          text={title}
+          text={title.split("_").join(" ")}
           delay={150}
           animateBy="words"
           direction="top"

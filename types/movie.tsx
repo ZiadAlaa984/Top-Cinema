@@ -1,6 +1,15 @@
+import { celebritieType } from "./celebritie";
+import { tvType } from "./tv";
+
 export interface ResponseApiMovie {
   page: number;
   results: movieType[];
+  total_pages: number;
+  total_results: number;
+}
+export interface ResponseApiSearch {
+  page: number;
+  results: movieType[] | tvType[] | celebritieType[];
   total_pages: number;
   total_results: number;
 }

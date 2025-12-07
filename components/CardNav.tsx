@@ -6,6 +6,7 @@ import { GoArrowUpRight } from "react-icons/go";
 import "./CardNav.css";
 import { Search } from "lucide-react";
 import Link from "next/link";
+import { DialogSearch } from "@/Shared/DialogSearch";
 
 export interface CardNavProps {
   items: CardNavItem[];
@@ -180,10 +181,7 @@ const CardNav: React.FC<CardNavProps> = ({
           <h1 className=" capitalize font-bold text-xl">
             <Link href={"/"}>top cinema</Link>
           </h1>
-
-          <button type="button">
-            <Search size={26} />
-          </button>
+          <DialogSearch />
         </div>
 
         <div className="card-nav-content" aria-hidden={!isExpanded}>
