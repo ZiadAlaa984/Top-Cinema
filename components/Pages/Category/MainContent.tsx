@@ -12,6 +12,7 @@ import Wrapper from "@/Shared/Wrapper";
 import { tvType } from "@/types/tv";
 import { Loader2 } from "lucide-react";
 import { useInView } from "react-intersection-observer";
+import BeforeAfterBtns from "@/Shared/BeforeAfterBtns";
 
 export default function MainContent({
   type,
@@ -29,6 +30,8 @@ export default function MainContent({
     isError,
     fetchNextPage,
     hasNextPage,
+    error,
+    isPending,
     isFetchingNextPage,
   } = useInfiniteQuery({
     queryKey: [type, category],
@@ -56,12 +59,19 @@ export default function MainContent({
 
   return (
     <Wrapper className="flex flex-col  gap-4">
+      <BeforeAfterBtns />
       <div className={cn("Content-Wrapper card-used")}>
         <SpecialTitle title={category} />
         <Separator className="my-4" />
 
         {/* 1) Main content */}
-        <RequestStatus isloading={isLoading} isError={isError}>
+        <RequestStatus
+          isLoading={isLoading}
+          isPending={isPending}
+          data={allResults}
+          isError={isError}
+          error={error ?? new Error("Unknown error")}
+        >
           <div className="grid md:grid-cols-3 lg:grid-cols-6 grid-cols-2 gap-2 ">
             {allResults.map((card: tvType, index: number) => {
               return (

@@ -12,24 +12,32 @@ import { Loader2 } from "lucide-react";
 import { celebritieResponse } from "@/types/celebritie";
 import CelebritieCard from "@/Shared/CelebritieCard";
 import { useInView } from "react-intersection-observer";
+import BeforeAfterBtns from "@/Shared/BeforeAfterBtns";
 
 export default function MainContent() {
   const { ref, inView } = useInView();
 
-  const { data, isLoading, isError, fetchNextPage, isFetchingNextPage } =
-    useInfiniteQuery({
-      queryKey: ["celebrities"],
-      queryFn: ({ pageParam }: { pageParam: number }) =>
-        Service.getCelebrities(pageParam),
-      initialPageParam: 1,
-      getNextPageParam: (lastPage: any) => {
-        if (lastPage.page < lastPage.total_pages) {
-          return lastPage.page + 1;
-        }
-        return undefined; // no more pages
-      },
-      staleTime: 1000 * 60 * 5,
-    });
+  const {
+    data,
+    isLoading,
+    isError,
+    isPending,
+    error,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery({
+    queryKey: ["celebrities"],
+    queryFn: ({ pageParam }: { pageParam: number }) =>
+      Service.getCelebrities(pageParam),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage: any) => {
+      if (lastPage.page < lastPage.total_pages) {
+        return lastPage.page + 1;
+      }
+      return undefined; // no more pages
+    },
+    staleTime: 1000 * 60 * 5,
+  });
   useEffect(() => {
     if (inView) {
       fetchNextPage();
@@ -38,12 +46,19 @@ export default function MainContent() {
 
   return (
     <Wrapper className="flex flex-col  gap-4">
+      <BeforeAfterBtns />
       <div className={cn("Content-Wrapper card-used")}>
         <SpecialTitle title={"celebrities"} />
         <Separator className="my-4" />
 
         {/* 1) Main content */}
-        <RequestStatus isloading={isLoading} isError={isError}>
+        <RequestStatus
+          isLoading={isLoading}
+          isPending={isPending}
+          data={data?.pages ?? []}
+          isError={isError}
+          error={error ?? new Error("Unknown error")}
+        >
           <div className="grid md:grid-cols-3 lg:grid-cols-6 grid-cols-2 gap-2 ">
             {data?.pages
               ?.flatMap((page: celebritieResponse) => page.results)

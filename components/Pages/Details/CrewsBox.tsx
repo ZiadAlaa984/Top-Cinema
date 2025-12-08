@@ -14,9 +14,13 @@ function CrewsBox({ data, type }: { data: castResponse; type: string }) {
       <ScrollArea className="rounded-md border">
         <div className="grid grid-flow-col auto-cols-[200px] gap-2 p-2">
           {data.cast.map(
-            (cast) =>
+            (cast, index) =>
               cast?.profile_path && (
-                <Link key={cast.id} className=" firstChild " href={"/"}>
+                <Link
+                  key={index}
+                  className=" firstChild "
+                  href={`/celebrities/${cast.id}`}
+                >
                   <Image
                     width={300}
                     height={200}

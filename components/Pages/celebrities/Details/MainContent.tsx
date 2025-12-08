@@ -7,13 +7,15 @@ import {
   CombinedCreditsInterface,
 } from "@/types/celebritie";
 import Box from "@/Shared/Box";
+import BeforeAfterBtns from "@/Shared/BeforeAfterBtns";
 
 async function MainContent({ id }: { id: string }) {
   const Response: celebritieDetails = await Service.getDetailsCelebrities(id);
   const CombinedCreditsResponse: CombinedCreditsInterface =
     await Service.getCombinedCredits(id);
   return (
-    <Wrapper className="flex flex-col Content-Wrapper gap-4">
+    <Wrapper>
+      <BeforeAfterBtns />
       <Info data={Response} />
       <Box title="Known For" data={CombinedCreditsResponse?.cast} />
       <Acting />

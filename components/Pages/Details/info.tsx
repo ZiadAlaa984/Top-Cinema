@@ -113,14 +113,14 @@ export default function Info({
       )}
 
       {/* Rating */}
-      {data?.vote_average && (
+      {data?.vote_average && data?.vote_average != 0 ? (
         <h2 className="glass">
           <span className="text-3xl font-bold">
             {data.vote_average.toFixed(1)}
           </span>{" "}
           /10
         </h2>
-      )}
+      ) : null}
 
       {/* Quick Link */}
       {url && (

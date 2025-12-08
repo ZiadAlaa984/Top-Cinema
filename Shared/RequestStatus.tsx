@@ -11,10 +11,12 @@ const RequestStatus = ({
   isError,
   isPending,
   error,
+  noDataPlaceholder = "Sorry, we couldn't find any items",
   data,
   children,
 }: {
   isLoading: boolean;
+  noDataPlaceholder?: string;
   isError: boolean;
   error: Error;
   data: unknown[];
@@ -38,7 +40,7 @@ const RequestStatus = ({
   if (Array.isArray(data) && data.length === 0)
     return (
       <div>
-        <NoDataCom />
+        <NoDataCom text={noDataPlaceholder} />
       </div>
     );
 

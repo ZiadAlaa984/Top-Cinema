@@ -4,6 +4,7 @@ import Wrapper from "@/Shared/Wrapper";
 import { logos, translation, video } from "@/types/movie";
 import Details from "./Details";
 import TabsDetails from "./TabsDetails";
+import BeforeAfterBtns from "@/Shared/BeforeAfterBtns";
 
 async function MainContent({ type, id }: { type: string; id: string }) {
   // Fetch all data in parallel
@@ -45,6 +46,7 @@ async function MainContent({ type, id }: { type: string; id: string }) {
   }
   return (
     <Wrapper image={imageWrapper}>
+      <BeforeAfterBtns />
       <Details
         name={name}
         logo={selectedLogo}

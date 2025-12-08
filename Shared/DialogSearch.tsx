@@ -41,12 +41,6 @@ export function DialogSearch() {
   const [inputValue, setInputValue] = useState("");
   const [debouncedValue] = useDebounce(inputValue, 1000);
 
-  // * react query
-  // * show data correct
-  // * function to show cards
-  // * handle filter
-  // ^ test
-
   const { data, isLoading, isError, error, isPending } = useQuery({
     queryKey: ["search", filter, debouncedValue],
     queryFn: () => Service.getDataBySearch(filter, debouncedValue),
@@ -57,26 +51,28 @@ export function DialogSearch() {
     if (!data?.results) return null;
 
     return data.results.map((card: tvType | celebritieType, index: number) => {
-      // Check for image path based on type
       const imagePath =
         (card as tvType).poster_path || (card as celebritieType).profile_path;
 
       if (!imagePath) return null;
 
-      // Render celebrity card
+      // Celebrity
       if (filter === "person") {
         return (
-          <CelebritieCard
-            key={card.id || index}
-            card={card as celebritieType}
-            className="hover:scale-105 transition-transform"
-          />
+          <DialogClose asChild key={index}>
+            <CelebritieCard
+              card={card as celebritieType}
+              className="hover:scale-105 transition-transform"
+            />
+          </DialogClose>
         );
       }
 
-      // Render movie/tv card
+      // Movie/TV
       return (
-        <Card type={filter} card={card as tvType} key={card.id || index} />
+        <DialogClose asChild key={index}>
+          <Card type={filter} card={card as tvType} />
+        </DialogClose>
       );
     });
   };
