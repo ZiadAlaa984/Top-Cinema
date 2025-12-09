@@ -58,6 +58,7 @@ async function MainContent({ type, id }: { type: string; id: string }) {
         id={id}
       />
       <TabsDetails
+        seasonName={name}
         id={id}
         seasons={type == "tv" ? details?.seasons : null}
         Crews={crew}

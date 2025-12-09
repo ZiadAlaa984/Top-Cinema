@@ -13,8 +13,10 @@ const TabsDetails = ({
   type,
   Crews,
   seasons,
+  seasonName,
 }: {
   id: string;
+  seasonName?: string;
   recommendations: ResponseApiTv;
   type: string;
   Crews: castResponse;
@@ -51,7 +53,7 @@ const TabsDetails = ({
       </TabsContent>
 
       <TabsContent value="seasons">
-        <SeasonsBox id={id} data={seasons} />
+        <SeasonsBox seasonName={seasonName || ""} id={id} data={seasons} />
       </TabsContent>
     </Tabs>
   );

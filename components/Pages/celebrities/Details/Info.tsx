@@ -7,7 +7,7 @@ function Info({ data }: { data: celebritieDetails }) {
   return (
     <div className=" Content-Wrapper grid grid-cols-1 lg:grid-cols-4 gap-4">
       {/* info details */}
-      <div className="col-span-2 flex flex-col gap-4">
+      <div className="col-span-1 md:col-span-2 flex flex-col gap-4">
         {/* Breadcrumbs */}
         <Breadcrumbs
           type={"Celebrities"}
@@ -17,7 +17,9 @@ function Info({ data }: { data: celebritieDetails }) {
         {data?.biography && (
           <div className="space-y-2">
             <h2 className="glass ">Biography</h2>
-            <p className="glass text-sm">{data.biography}</p>
+            <p className="glass text-sm">
+              {data.biography.split(" ").splice(0, 50).join(" ")}
+            </p>
           </div>
         )}
         <div className="flex flex-wrap items-center gap-2">
@@ -41,7 +43,7 @@ function Info({ data }: { data: celebritieDetails }) {
         )}
       </div>
       {/* image profile */}
-      <div className="col-span-1  col-end-5 items-start">
+      <div className="col-span-1  md:col-end-5 items-start">
         <div className="card-used  ">
           <Image
             alt={data?.name || "unknown"}

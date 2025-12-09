@@ -17,7 +17,7 @@ function GridHome({
   order,
 }: {
   type?: string;
-  order?: number;
+  order?: string;
   dataBig: tvType[];
   dataSmall: tvType[];
   titleGridSmall: string;
@@ -27,7 +27,7 @@ function GridHome({
 }) {
   return (
     <div className="grid Content-Wrapper gap-4  grid-cols-3">
-      <div className={`col-span-3 md:col-span-2  order-${order} card-used `}>
+      <div className={`col-span-3 lg:col-span-2  ${order ?? ""} card-used `}>
         <SpecialTitle page={pageGridBig} title={titleGridBig} />
         <Separator className="my-4" />
         <ScrollArea className="rounded-md border">
@@ -39,13 +39,13 @@ function GridHome({
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
       </div>
-      <div className="col-span-3 md:col-span-1  card-used">
+      <div className="col-span-3 lg:col-span-1  card-used">
         {" "}
         <SpecialTitle page={pageGridSmall} title={titleGridSmall} />
         <Separator className="my-4" />
         <ScrollArea className="rounded-md  border">
           <div className="flex flex-col   max-h-[316px] gap-2 p-2">
-            {dataBig.map((card, index) => (
+            {dataSmall.map((card, index) => (
               <SideCard type={type} card={card} key={index} />
             ))}
           </div>

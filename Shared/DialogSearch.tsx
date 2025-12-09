@@ -40,12 +40,17 @@ export function DialogSearch() {
   const [filter, setFilter] = useState<FilterType>("movie");
   const [inputValue, setInputValue] = useState("");
   const [debouncedValue] = useDebounce(inputValue, 1000);
+  const [isOpen, setIsOpen] = useState(false);
 
   const { data, isLoading, isError, error, isPending } = useQuery({
     queryKey: ["search", filter, debouncedValue],
     queryFn: () => Service.getDataBySearch(filter, debouncedValue),
     enabled: debouncedValue.length > 0,
   });
+
+  const handleCardClick = () => {
+    setIsOpen(false);
+  };
 
   const renderCards = () => {
     if (!data?.results) return null;
@@ -59,26 +64,26 @@ export function DialogSearch() {
       // Celebrity
       if (filter === "person") {
         return (
-          <DialogClose asChild key={index}>
+          <div key={index} onClick={handleCardClick}>
             <CelebritieCard
               card={card as celebritieType}
-              className="hover:scale-105 transition-transform"
+              className="hover:scale-105 transition-transform cursor-pointer"
             />
-          </DialogClose>
+          </div>
         );
       }
 
       // Movie/TV
       return (
-        <DialogClose asChild key={index}>
+        <div key={index} onClick={handleCardClick}>
           <Card type={filter} card={card as tvType} />
-        </DialogClose>
+        </div>
       );
     });
   };
 
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Search className="cursor-pointer" size={26} />
       </DialogTrigger>

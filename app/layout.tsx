@@ -5,13 +5,15 @@ import { Providers } from "./providers";
 import Footer from "@/components/Layout/Footer";
 import CardNav from "@/components/CardNav";
 import { items } from "@/constant";
-
 const cairo = Cairo({
   weight: ["500", "400", "600", "700"],
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
+  icons: {
+    icon: "/favicon.png",
+  },
   title: {
     default: "Top Cinema - Movies & TV Shows Database",
     template: "%s | Top Cinema",
@@ -30,7 +32,7 @@ export default function RootLayout({
         <Providers>
           <CardNav
             items={items}
-            className="fixed! backdrop-blur-md"
+            className="fixed! "
             baseColor="transparent"
             menuColor="#fff"
             buttonBgColor="#111"
@@ -45,4 +47,4 @@ export default function RootLayout({
   );
 }
 
-// Navbar Search
+//  ^ seasons

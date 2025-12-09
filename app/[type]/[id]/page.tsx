@@ -14,7 +14,7 @@ export async function generateMetadata({
 
 async function page({ params }: { params: { id: string; type: string } }) {
   const { id, type } = await params;
-  return <MainContent key={"details Movie "} id={id} type={type} />;
+  return <MainContent key={`details ${type} `} id={id} type={type} />;
 }
 
 export default page;

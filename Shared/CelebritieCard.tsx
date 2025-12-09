@@ -28,9 +28,9 @@ export default function CelebritieCard({
         />
         <div className="absolute top-0 p-2.5 flex flex-col ">
           <ul className="flex items-center flex-wrap gap-1">
-            {card.known_for.map((known_for) => (
+            {card.known_for.map((known_for, index) => (
               <li
-                key={known_for?.original_title}
+                key={index}
                 className="tag bg-yellow-400 text-black font-semibold px-2 py-1 rounded"
               >
                 {known_for?.original_title?.split(" ").slice(0, 3).join(" ") ||

@@ -222,4 +222,26 @@
   .glass {
     @apply backdrop-blur-md w-fit  border-[1px]  rounded-xl p-2;
   }
+  /* Width & height of scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 10px;
+  }
+
+  /* Track (background) */
+  ::-webkit-scrollbar-track {
+    background: #000;
+  }
+
+  /* Thumb (scroll handle) */
+  ::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 30px;
+  }
+
+  /* Thumb on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+    border-radius: 30px;
+  }
 }

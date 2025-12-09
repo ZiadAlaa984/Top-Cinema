@@ -16,7 +16,7 @@ function BeforeAfterBtns() {
           strokeWidth={0}
           version="1.1"
           viewBox="0 0 17 17"
-          className="text-2xl inline mb-1 mr-1"
+          className="inline"
           height="1em"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +35,7 @@ function BeforeAfterBtns() {
             fill="currentColor"
             strokeWidth={0}
             viewBox="0 0 576 512"
-            className="text-2xl inline mb-1  "
+            className="inline "
             height="1em"
             width="1em"
             xmlns="http://www.w3.org/2000/svg"

@@ -14,7 +14,7 @@ export default function Wrapper({
       style={{ backgroundImage: `url(${image ? image : "/bg.jpg"})` }}
     >
       <div className="bg-black/80  min-h-screen w-full">
-        <div className={`  ${className} py-6 md:pt-30 flex flex-col gap-6`}>
+        <div className={`  ${className} py-6 pt-30 flex flex-col gap-6`}>
           {children}
         </div>
       </div>

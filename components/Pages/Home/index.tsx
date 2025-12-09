@@ -34,22 +34,21 @@ export default async function MainContent() {
 
       {/* Example using new movie data */}
       <GridHome
-        
         dataSmall={nowPlaying?.results}
         dataBig={popular?.results}
         titleGridSmall="Now Playing"
-        pageGridSmall="./movie/now_playing"
-        pageGridBig="./movie/popular"
+        pageGridSmall="./movie/category/now_playing"
+        pageGridBig="./movie/category/popular"
         titleGridBig="Popular Movies"
       />
 
       <GridHome
-        order={1}
+        order={"order-1"}
         dataSmall={topRated?.results}
         dataBig={upcoming?.results}
         titleGridSmall="Top Rated"
-        pageGridSmall="./movie/top_rated"
-        pageGridBig="./movie/upcoming"
+        pageGridSmall="./movie/category/top_rated"
+        pageGridBig="./movie/category/upcoming"
         titleGridBig="Upcoming Movies"
       />
 
@@ -57,12 +56,16 @@ export default async function MainContent() {
       <Box
         data={popular?.results}
         title="What's Popular in Movies"
-        page="./movie/popular"
+        page="./tv/category/popular"
       />
 
-      <Box data={topRated?.results} title="Netflix Series" page="./netflix" />
+      <Box
+        data={topRated?.results}
+        title="Top Rated Movies"
+        page="./movie/category/top_rated"
+      />
 
-      <Box data={trendingTv?.results} title="Best TV Series This Month" />
+      <Box data={trendingTv?.results} title="Trending Series This Month" />
     </Wrapper>
   );
 }

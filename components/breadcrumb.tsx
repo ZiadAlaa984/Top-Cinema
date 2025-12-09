@@ -49,8 +49,10 @@ const Breadcrumbs = ({
             <BreadcrumbSeparator>
               <ChevronsRight />
             </BreadcrumbSeparator>
-            <BreadcrumbItem>
-              <BreadcrumbPage>{seasonName}</BreadcrumbPage>
+            <BreadcrumbItem className="cursor-pointer">
+              <BreadcrumbLink href={`/${link?.toLowerCase()}`}>
+                {seasonName}
+              </BreadcrumbLink>
             </BreadcrumbItem>
           </>
         )}

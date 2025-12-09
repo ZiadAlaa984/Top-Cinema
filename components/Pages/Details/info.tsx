@@ -34,7 +34,7 @@ export default function Info({
   }, []);
 
   return (
-    <div className="col-span-2 flex flex-col gap-4">
+    <div className="col-span-1 lg:col-span-2 flex flex-col gap-4">
       <Breadcrumbs
         seasonName={seasonName}
         type={type}

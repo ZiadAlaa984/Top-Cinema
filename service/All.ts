@@ -43,7 +43,8 @@ const Service = {
   getDetailsSeason: (number: string, id: string) =>
     query(buildUrl("tv", id, "season", number)),
   getCrew: (type: string, id: string) => query(buildUrl(type, id, "credits")),
-
+  getCrewSeoson: (type: string, id: string, number: string) =>
+    query(buildUrl(type, id, "season", number, "credits")),
   getRecommendations: (type: string, id: string, page = 1) =>
     query(buildUrl(type, id, "recommendations"), { page }),
 

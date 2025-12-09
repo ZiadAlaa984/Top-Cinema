@@ -7,6 +7,7 @@ import "./CardNav.css";
 import { Search } from "lucide-react";
 import Link from "next/link";
 import { DialogSearch } from "@/Shared/DialogSearch";
+import Image from "next/image";
 
 export interface CardNavProps {
   items: CardNavItem[];
@@ -162,7 +163,9 @@ const CardNav: React.FC<CardNavProps> = ({
     <div className={`card-nav-container   ${className}`}>
       <nav
         ref={navRef}
-        className={`card-nav  ${isExpanded ? "open" : ""}`}
+        className={`card-nav overflow-hidden backdrop-blur-md  ${
+          isExpanded ? "open" : ""
+        }`}
         style={{ backgroundColor: baseColor }}
       >
         <div className="card-nav-top">
@@ -171,15 +174,18 @@ const CardNav: React.FC<CardNavProps> = ({
             onClick={toggleMenu}
             role="button"
             aria-label={isExpanded ? "Close menu" : "Open menu"}
-            tabIndex={0}
             style={{ color: menuColor || "#000" }}
           >
             <div className="hamburger-line" />
             <div className="hamburger-line" />
           </div>
-
-          <h1 className=" capitalize font-bold text-xl">
-            <Link href={"/"}>top cinema</Link>
+          <h1>
+            <Link
+              className="flex items-center leading-6  font-bold text-2xl"
+              href={"/"}
+            >
+              <span className="text-[#ff434c]">Top</span>Cinema
+            </Link>
           </h1>
           <DialogSearch />
         </div>

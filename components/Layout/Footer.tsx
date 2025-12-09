@@ -4,7 +4,11 @@ export default function Footer() {
   return (
     <div className="flex  py-6 justify-center items-center">
       <h4 className="text-md capitalize">
-        All rights reserved © Ziad Alaa - {currentYear}
+        All rights reserved ©{" "}
+        <a target="_blank" href="https://portfolio-amrm.vercel.app/">
+          Ziad Alaa
+        </a>{" "}
+        - {currentYear}
       </h4>
     </div>
   );
