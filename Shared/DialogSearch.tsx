@@ -129,19 +129,13 @@ export function DialogSearch() {
           isError={isError}
           error={error ?? new Error("Unknown error")}
         >
-          <ScrollArea className="rounded-md border  h-[400px] ">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 p-2 ">
+          <ScrollArea className="rounded-md border h-[300px] lg:h-[400px]  md:h-[150px] ">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 p-2 ">
               {renderCards()}
             </div>
             <ScrollBar orientation="vertical" />
           </ScrollArea>
         </RequestStatus>
-
-        <DialogFooter>
-          <DialogClose asChild>
-            <Button>Cancel</Button>
-          </DialogClose>
-        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

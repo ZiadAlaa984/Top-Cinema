@@ -124,9 +124,9 @@ export default function Info({
 
       {/* Quick Link */}
       {url && (
-        <li className="glass flex items-center gap-2 text-xs">
+        <li className="glass flex items-center flex-wrap gap-2 text-xs">
           Short link:{" "}
-          <span className="tag bg-yellow-400 text-black font-semibold m-0 rounded">
+          <span className="tag bg-yellow-400 text-wrap text-black font-semibold m-0 rounded">
             {url}
           </span>{" "}
           <CopyButton content={url} />
