@@ -23,6 +23,8 @@ const Breadcrumbs = ({
     link = `movie/category/popular`;
   } else if (type == "tv") {
     link = `${type}/category/popular`;
+  } else {
+    link = `celebrities`;
   }
   return (
     <Breadcrumb>
